@@ -1,0 +1,119 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.image-gallery {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid with min size */
+    gap: 10px; /* Space between images */
+    max-width: 90%; /* Maximum width for the gallery */
+    margin: 20px auto; /* Center the gallery */
+}
+
+.image-gallery img {
+    width: 100%; /* Make images responsive */
+    height: 150px; /* Fixed height to maintain layout */
+    object-fit: cover; /* Cover the box without cropping */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s; /* Smooth scaling on hover */
+}
+
+.image-gallery img:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Lightbox Styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.lightbox-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px; /* Rounded corners */
+    animation: fadeIn 0.5s ease;
+}
+
+.lightbox-info {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    animation: slideIn 0.5s ease;
+}
+
+.close, .prev, .next {
+    position: absolute;
+    top: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.close {
+    right: 20px;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 60px;
+}
+
+/* Animation for information box */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div class="image-gallery">
+        <img src="image-gallery/img 1.jpg" alt="Image 1" onclick="openLightbox(0)">
+        <img src="image-gallery/img 2.jpg" alt="Image 2" onclick="openLightbox(1)">
+        <img src="image-gallery/img 3.jpg" alt="Image 3" onclick="openLightbox(2)">
+        <img src="image-gallery/img 4.jpg" alt="Image 4" onclick="openLightbox(3)">
+        <img src="image-gallery/img 5.jpg" alt="Image 5" onclick="openLightbox(4)">
+        <img src="image-gallery/img 6.jpg" alt="Image 6" onclick="openLightbox(5)">
+        <img src="image-gallery/img 7.jpg" alt="Image 7" onclick="openLightbox(6)">
+        <img src="image-gallery/img 8.jpg" alt="Image 8" onclick="openLightbox(7)">
+        <img src="image-gallery/img 9.jpg" alt="Image 9" onclick="openLightbox(8)">
+        <img src="image-gallery/img 10.jpg" alt="Image 10" onclick="openLightbox(9)">
+        <img src="image-gallery/img 11.jpg" alt="Image 11" onclick="openLightbox(10)">
+        <img src="image-gallery/img 12.jpg" alt="Image 12" onclick="openLightbox(11)">
+        <img src="image-gallery/img 13.jpg" alt="Image 13" onclick="openLightbox(12)">
+        <img src="image-gallery/img 14.jpg" alt="Image 14" onclick="openLightbox(13)">
+        <img src="image-gallery/img 15.jpg" alt="Image 14" onclick="openLightbox(14)">
+        <img src="image-gallery/img 16.jpg" alt="Image 14" onclick="openLightbox(15)">
+        <img src="image-gallery/img 17.jpg" alt="Image 14" onclick="openLightbox(16)">
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span id="close-btn" class="close">&times;</span>
+            <button id="prev-btn" class="prev">&#10094;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="Lightbox Image">
+            <button id="next-btn" class="next">&#10095;</button>
+            <div id="lightbox-info" class="lightbox-info"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        // Array of image descriptions
+        const imageDescriptions = [
+            "Description for Image 1.",
+            "Description for Image 2.",
+            "Description for Image 3.",
+            "Description for Image 4.",
+            "Description for Image 5.",
+            "Description for Image 6.",
+            "Description for Image 7.",
+            "Description for Image 8.",
+            "Description for Image 9.",
+            "Description for Image 10.",
+            "Description for Image 11.",
+            "Description for Image 12.",
+            "Description for Image 13.",
+            "Description for Image 14."
+        ];
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const images = document.querySelectorAll('.image-gallery img');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxInfo = document.getElementById('lightbox-info');
+
+            currentIndex = index; // Set the current index
+            lightboxImage.src = images[currentIndex].src; // Show the clicked image
+            lightboxInfo.innerText = imageDescriptions[currentIndex]; // Set the image description
+            lightbox.style.display = 'flex'; // Show the lightbox
+
+            document.getElementById('next-btn').onclick = function() {
+                currentIndex = (currentIndex + 1) % images.length; // Loop to the first image
+                updateLightbox();
+            };
+
+            document.getElementById('prev-btn').onclick = function() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to the last image
+                updateLightbox();
+            };
+
+            document.getElementById('close-btn').onclick = function() {
+                lightbox.style.display = 'none'; // Close the lightbox
+            };
+        }
+
+        function updateLightbox() {
+            const images = document.querySelectorAll('.image-gallery img');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxInfo = document.getElementById('lightbox-info');
+
+            lightboxImage.src = images[currentIndex].src; // Change image
+            lightboxInfo.innerText = imageDescriptions[currentIndex]; // Update description
+        }
+    </script>
+</body>
+</html>
